@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <md-tabs md-sync-route>
+      <md-tab id="tab-home" md-label="Home" to="/components/tabs/home"></md-tab>
+      <md-tab id="tab-pages" md-label="Pages" to="/components/tabs/pages"></md-tab>
+      <md-tab id="tab-posts" md-label="Posts" to="/components/tabs/posts"></md-tab>
+      <md-tab id="tab-settings" md-label="Settings" to="/components/tabs/settings"></md-tab>
+      <md-tab id="tab-disabled" md-label="Disabled" md-disabled></md-tab>
+    </md-tabs>
     <router-view/>
   </div>
 </template>
@@ -11,13 +17,8 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<script>
+  export default {
+    name: 'TabRouter'
+  }
+</script>
