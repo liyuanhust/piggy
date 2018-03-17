@@ -3,13 +3,14 @@
     <div style="width: 50%">
       <md-field>
         <label>猪ID</label>
-        <md-input v-model="pigId" disabled></md-input>
+        <md-input v-model="pigId" ></md-input>
       </md-field>
       <md-field>
         <label>饲养场</label>
         <md-input v-model="farm"></md-input>
       </md-field>
       <md-button v-on:click="addNewPig" class="md-raised md-primary">提交</md-button>
+      <md-dialog-alert :md-active.sync="success" md-content="成功创建新的猪" md-confirm-text="Cool!" />
     </div>
     <div class="pigList">
       <li v-for="pig in pigList">
@@ -59,7 +60,8 @@
     name: 'TextFields',
     data: () => ({
       pigList: [],
-      pigId: uuid.v1(),
+      success: false,
+      pigId: uuid.v4(),
       farm: '海南农场'
     }),
     methods: {
@@ -72,8 +74,9 @@
           status: "None"
         })
           .then(response => {
-            $.getAllPig();
-            this.pigId = uuid.v1()
+            this.success = true;
+            this.pigId = uuid.v4();
+            this.getAllPig();
           })
           .catch(e => {
             console.log(e)
