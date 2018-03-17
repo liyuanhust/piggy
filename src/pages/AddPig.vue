@@ -1,24 +1,35 @@
 <template>
   <div class="addPigForm">
-    <md-field>
-      <label>猪ID</label>
-      <md-input v-model="pigId" disabled></md-input>
-    </md-field>
-    <md-field>
-      <label>饲养场</label>
-      <md-input v-model="farm"></md-input>
-    </md-field>
-    <md-button class="md-raised md-primary">提交</md-button>
-    <li v-for="pig in pigList">
-      <span>猪ID：{{pig.assetId}}</span>
-      <span>养殖场：{{pig.farm}}</span>
-    </li>
+    <div style="width: 50%">
+      <md-field>
+        <label>猪ID</label>
+        <md-input v-model="pigId" disabled></md-input>
+      </md-field>
+      <md-field>
+        <label>饲养场</label>
+        <md-input v-model="farm"></md-input>
+      </md-field>
+      <md-button class="md-raised md-primary">提交</md-button>
+    </div>
+    <div>
+      <li v-for="pig in pigList">
+
+        <span>猪ID：{{pig.assetId}}</span>
+        <span>养殖场：{{pig.farm}}</span>
+      </li>
+    </div>
   </div>
 </template>
 
 <style>
   .addPigForm {
-    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .addPigForm li {
+    list-style-type: none;
   }
 
   button {
@@ -39,7 +50,7 @@
     }),
     mounted: function () {
       axios.get("http://10.30.92.108:3000/api/Pig").then((response) => {
-          this.pigList = response.data;
+        this.pigList = response.data;
       }).catch(e => {
         console.log(e)
       })
