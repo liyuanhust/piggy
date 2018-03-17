@@ -20,17 +20,6 @@
   <div class="meatList">
     <li v-for="meat in meatList">
       <meat-status :meat='meat' v-on:changeView="getAllMeat"/>
-
-      <!--<md-card :class="pig.status != 'Permitted' ? 'notPermitted' : ''">-->
-      <!--<md-card-content>-->
-      <!--<p>猪ID：{{pig.assetId}}</p>-->
-      <!--<p>养殖场：{{pig.farm}}</p>-->
-      <!--<md-field>-->
-      <!--<label>检疫员</label>-->
-      <!--<md-input v-model="checker" v-on:keyup.enter="addTask(pig.assetId, checker)" ></md-input>-->
-      <!--</md-field>-->
-      <!--</md-card-content>-->
-      <!--</md-card>-->
     </li>
   </div>
   </div>

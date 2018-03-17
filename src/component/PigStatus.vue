@@ -5,7 +5,7 @@
       <p>养殖场：{{pig.farm}}</p>
       <md-field>
         <label>检疫员</label>
-          <md-input v-if="pig.status != 'Permitted' && pig.status != 'Sliced'" v-model="checker" v-on:keyup.enter="addTask(pig.assetId, checker)"></md-input>
+          <md-input v-if="!readOnly && pig.status != 'Permitted' && pig.status != 'Sliced'" v-model="checker" v-on:keyup.enter="addTask(pig.assetId, checker)"></md-input>
           <md-input v-else v-model="pig.checkedBy" disabled></md-input>
       </md-field>
     </md-card-content>
@@ -34,11 +34,16 @@
     props: {
       pig: {
         type: Object
+      },
+      readOnly: {
+        type: Boolean,
+        default: false
       }
     },
     data: () => ({
       checker: ""
     }),
+
     methods: {
       addTask(pigId, checker) {
         axios.post(api, {

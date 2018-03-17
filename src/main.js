@@ -10,9 +10,9 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import UUID from 'vue-uuid'
 
-Vue.use(VueMaterial,VueAxios, axios, UUID)
+Vue.use(VueMaterial,VueAxios, axios, UUID);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({

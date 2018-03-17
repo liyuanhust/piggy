@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "qrcode.vue": "^1.5.2",
     "vue": "^2.5.2",
     "vue-axios": "^2.0.2",
     "vue-material": "^1.0.0-beta-7",
+    "vue-qrcode": "0.0.2",
     "vue-router": "^3.0.1",
     "vue-uuid": "^1.0.0"
   },
