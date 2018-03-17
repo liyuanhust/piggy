@@ -13,13 +13,13 @@
 </template>
 
 <style>
-.addPigForm{
-  width:50%;
-}
+  .addPigForm {
+    width: 50%;
+  }
 
-button{
-  width: 160px;
-}
+  button {
+    width: 160px;
+  }
 </style>
 
 <script>
