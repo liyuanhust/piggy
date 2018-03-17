@@ -8,8 +8,9 @@ import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import UUID from 'vue-uuid'
 
-Vue.use(VueMaterial,VueAxios, axios)
+Vue.use(VueMaterial,VueAxios, axios, UUID)
 
 Vue.config.productionTip = false
 

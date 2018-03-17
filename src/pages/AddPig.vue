@@ -2,7 +2,7 @@
   <div class="addPigForm">
     <md-field>
       <label>猪ID</label>
-      <md-input v-model="pigId"></md-input>
+      <md-input v-model="pigId" disabled></md-input>
     </md-field>
     <md-field>
       <label>饲养场</label>
@@ -28,12 +28,13 @@
 
 <script>
   import axios from 'axios';
+  import {uuid}  from 'vue-uuid'
 
   export default {
     name: 'TextFields',
     data: () => ({
       pigList:[],
-      pigId: '001',
+      pigId: uuid.v1(),
       farm: '海南农场'
     }),
     mounted: function () {
