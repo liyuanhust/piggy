@@ -27,20 +27,21 @@
 <style>
   .addPigForm {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: column;
   }
 
   .pigList{
-    margin-left: 40px;
+
   }
 
   .pigList li {
+    display: inline-flex;
+    width: 25%;
     list-style-type: none;
   }
 
   .pigList li:not(:last-child) {
-    margin-bottom: 20px;
+    margin-right: 5px;
   }
 
   button {
