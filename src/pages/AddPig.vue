@@ -9,6 +9,10 @@
       <md-input v-model="farm"></md-input>
     </md-field>
     <md-button class="md-raised md-primary">提交</md-button>
+    <li v-for="pig in pigList">
+      <span>猪ID：{{pig.assetId}}</span>
+      <span>养殖场：{{pig.farm}}</span>
+    </li>
   </div>
 </template>
 
@@ -23,11 +27,21 @@
 </style>
 
 <script>
+  import axios from 'axios';
+
   export default {
     name: 'TextFields',
     data: () => ({
+      pigList:[],
       pigId: '001',
       farm: '海南农场'
-    })
+    }),
+    mounted: function () {
+      axios.get("http://10.30.92.108:3000/api/Pig").then((response) => {
+          this.pigList = response.data;
+      }).catch(e => {
+        console.log(e)
+      })
+    }
   }
 </script>
