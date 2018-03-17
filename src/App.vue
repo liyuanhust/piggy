@@ -5,7 +5,7 @@
         <md-tabs md-sync-route>
           <md-tab id="tab-home" md-label="注册猪" to="/"></md-tab>
           <md-tab id="tab-pages" md-label="加工猪" to="/slicepig"></md-tab>
-          <md-tab id="tab-posts" md-label="Posts" to="/components/tabs/posts"></md-tab>
+          <md-tab id="tab-posts" md-label="溯源" to="/search"></md-tab>
         </md-tabs>
       </div>
     </div>

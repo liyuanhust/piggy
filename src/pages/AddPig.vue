@@ -14,12 +14,18 @@
     </div>
     <div class="pigList">
       <li v-for="pig in pigList">
-        <md-card>
-          <md-card-content>
-            <p>猪ID：{{pig.assetId}}</p>
-            <p>养殖场：{{pig.farm}}</p>
-          </md-card-content>
-        </md-card>
+        <pig-status :pig='pig' v-on:changeView="getAllPig"/>
+
+        <!--<md-card :class="pig.status != 'Permitted' ? 'notPermitted' : ''">-->
+          <!--<md-card-content>-->
+            <!--<p>猪ID：{{pig.assetId}}</p>-->
+            <!--<p>养殖场：{{pig.farm}}</p>-->
+            <!--<md-field>-->
+              <!--<label>检疫员</label>-->
+              <!--<md-input v-model="checker" v-on:keyup.enter="addTask(pig.assetId, checker)" ></md-input>-->
+            <!--</md-field>-->
+          <!--</md-card-content>-->
+        <!--</md-card>-->
       </li>
     </div>
   </div>
@@ -29,10 +35,6 @@
   .addPigForm {
     display: flex;
     flex-direction: column;
-  }
-
-  .pigList{
-
   }
 
   .pigList li {
@@ -49,21 +51,27 @@
   button {
     width: 160px;
   }
+
 </style>
 
 <script>
   import axios from 'axios';
   import {uuid} from 'vue-uuid'
+  import PigStatus from '../component/PigStatus'
 
   const api = "http://10.30.92.108:3000/api/Pig";
 
   export default {
     name: 'TextFields',
+    components: {
+      PigStatus
+    },
     data: () => ({
       pigList: [],
       success: false,
       pigId: uuid.v4(),
-      farm: '海南农场'
+      farm: '海南农场',
+      checker: ""
     }),
     methods: {
       addNewPig() {
@@ -83,6 +91,9 @@
             console.log(e)
           })
       },
+      addTask(pigId, checker){
+        console.log(pigId,checker)
+      },
       getAllPig() {
         axios.get(api).then((response) => {
           this.pigList = response.data;
@@ -93,6 +104,7 @@
     },
     mounted: function () {
       this.getAllPig();
-    }
+    },
+
   }
 </script>
