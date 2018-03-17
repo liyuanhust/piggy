@@ -11,11 +11,14 @@
       </md-field>
       <md-button class="md-raised md-primary">提交</md-button>
     </div>
-    <div>
+    <div class="pigList">
       <li v-for="pig in pigList">
-
-        <span>猪ID：{{pig.assetId}}</span>
-        <span>养殖场：{{pig.farm}}</span>
+        <md-card>
+          <md-card-content>
+            <p>猪ID：{{pig.assetId}}</p>
+            <p>养殖场：{{pig.farm}}</p>
+          </md-card-content>
+        </md-card>
       </li>
     </div>
   </div>
@@ -28,8 +31,16 @@
     align-items: flex-start;
   }
 
-  .addPigForm li {
+  .pigList{
+    margin-left: 40px;
+  }
+
+  .pigList li {
     list-style-type: none;
+  }
+
+  .pigList li:not(:last-child) {
+    margin-bottom: 20px;
   }
 
   button {
