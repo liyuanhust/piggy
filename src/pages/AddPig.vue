@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="addPigForm">
     <md-field>
       <label>猪ID</label>
       <md-input v-model="pigId"></md-input>
@@ -13,7 +13,13 @@
 </template>
 
 <style>
+.addPigForm{
+  width:50%;
+}
 
+button{
+  width: 160px;
+}
 </style>
 
 <script>
