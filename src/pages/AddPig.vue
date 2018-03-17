@@ -36,13 +36,14 @@
   }
 
   .pigList li {
+    margin-top: 8px;
     display: inline-flex;
-    width: 25%;
+    width: 24%;
     list-style-type: none;
   }
 
   .pigList li:not(:last-child) {
-    margin-right: 5px;
+    margin-right: 1%;
   }
 
   button {
