@@ -9,7 +9,7 @@
         <label>饲养场</label>
         <md-input v-model="farm"></md-input>
       </md-field>
-      <md-button class="md-raised md-primary">提交</md-button>
+      <md-button v-on:click="addNewPig" class="md-raised md-primary">提交</md-button>
     </div>
     <div class="pigList">
       <li v-for="pig in pigList">
@@ -51,21 +51,44 @@
 
 <script>
   import axios from 'axios';
-  import {uuid}  from 'vue-uuid'
+  import {uuid} from 'vue-uuid'
+
+  const api = "http://10.30.92.108:3000/api/Pig";
 
   export default {
     name: 'TextFields',
     data: () => ({
-      pigList:[],
+      pigList: [],
       pigId: uuid.v1(),
       farm: '海南农场'
     }),
+    methods: {
+      addNewPig() {
+        axios.post(api, {
+          $class: "com.thoughtworks.Pig",
+          assetId: this.pigId,
+          farm: this.farm,
+          checkedBy: "None",
+          status: "None"
+        })
+          .then(response => {
+            $.getAllPig();
+            this.pigId = uuid.v1()
+          })
+          .catch(e => {
+            console.log(e)
+          })
+      },
+      getAllPig() {
+        axios.get(api).then((response) => {
+          this.pigList = response.data;
+        }).catch(e => {
+          console.log(e)
+        })
+      }
+    },
     mounted: function () {
-      axios.get("http://10.30.92.108:3000/api/Pig").then((response) => {
-        this.pigList = response.data;
-      }).catch(e => {
-        console.log(e)
-      })
+      this.getAllPig();
     }
   }
 </script>
