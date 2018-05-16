@@ -1,5 +1,5 @@
 <template>
-  <md-card :class="meat.status != 'Permitted' ? 'notPermitted' : 'permitted'">
+  <md-card md-with-hover :class="meat.status != 'Permitted' ? 'notPermitted' : 'permitted'">
     <md-card-content>
       <p>切片ID：{{meat.assetId}}</p>
       <md-field>

@@ -1,7 +1,7 @@
 <template>
-  <md-card :class="pig.status != 'Permitted' && pig.status != 'Sliced' ? 'notPermitted' : 'permitted'">
+  <md-card md-with-hover :class="pig.status != 'Permitted' && pig.status != 'Sliced' ? 'notPermitted' : 'permitted'">
     <md-card-content>
-      <p>猪ID：{{pig.assetId}}</p>
+      <p>佩奇ID：{{pig.assetId}}</p>
       <p>养殖场：{{pig.farm}}</p>
       <md-field>
         <label>检疫员</label>

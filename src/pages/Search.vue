@@ -18,11 +18,6 @@
 
 <style>
 
-  .header {
-    display: flex;
-
-  }
-
   .searchForm {
     width: 50%;
     padding-right: 10%;

@@ -2,30 +2,20 @@
   <div class="addPigForm">
     <div style="width: 50%">
       <md-field>
-        <label>猪ID</label>
-        <md-input v-model="pigId" ></md-input>
+        <label>佩奇ID</label>
+        <md-input v-model="pigId"></md-input>
       </md-field>
       <md-field>
         <label>饲养场</label>
         <md-input v-model="farm"></md-input>
       </md-field>
       <md-button v-on:click="addNewPig" class="md-raised md-primary">提交</md-button>
-      <md-dialog-alert :md-active.sync="success" md-content="成功创建新的猪" md-confirm-text="Cool!" />
+      <md-dialog-alert :md-active.sync="success" md-content="成功创建新的佩奇" md-confirm-text="Cool!" />
+      <md-switch v-model="onlySeeUnchecked" class="md-primary">仅看未检疫的佩奇</md-switch>
     </div>
     <div class="pigList">
       <li v-for="pig in pigList">
         <pig-status :pig='pig' v-on:changeView="getAllPig"/>
-
-        <!--<md-card :class="pig.status != 'Permitted' ? 'notPermitted' : ''">-->
-          <!--<md-card-content>-->
-            <!--<p>猪ID：{{pig.assetId}}</p>-->
-            <!--<p>养殖场：{{pig.farm}}</p>-->
-            <!--<md-field>-->
-              <!--<label>检疫员</label>-->
-              <!--<md-input v-model="checker" v-on:keyup.enter="addTask(pig.assetId, checker)" ></md-input>-->
-            <!--</md-field>-->
-          <!--</md-card-content>-->
-        <!--</md-card>-->
       </li>
     </div>
   </div>
@@ -67,6 +57,7 @@
       PigStatus
     },
     data: () => ({
+      onlySeeUnchecked: true,
       pigList: [],
       success: false,
       pigId: uuid.v4(),
@@ -91,15 +82,21 @@
             console.log(e)
           })
       },
-      addTask(pigId, checker){
-        console.log(pigId,checker)
+      addTask(pigId, checker) {
+        console.log(pigId, checker)
       },
       getAllPig() {
-        axios.get(api).then((response) => {
+        var apiPig = this.onlySeeUnchecked ? api + '?filter='+encodeURIComponent(JSON.stringify({"where":{"status":"None"}})) : api
+        axios.get(apiPig).then((response) => {
           this.pigList = response.data;
         }).catch(e => {
           console.log(e)
         })
+      }
+    },
+    watch: {
+      onlySeeUnchecked: function () {
+        this.getAllPig();
       }
     },
     mounted: function () {

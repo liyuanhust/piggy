@@ -4,14 +4,14 @@
   <div class="header">
     <div class="slicePigForm">
       <md-field>
-        <label for="pig">需要处理的猪</label>
+        <label for="pig">需要处理的佩奇</label>
         <md-select v-model="pigId" name="pig" id="pig">
           <md-option v-for="pig in pigList" :value="pig.assetId">{{pig.assetId}}</md-option>
         </md-select>
       </md-field>
       <md-field>
         <label>需要生成几个标签</label>
-        <md-input v-model="slidePiece" type="number"></md-input>
+        <md-input v-model="slidePiece" type="number" :disabled="banSlice"></md-input>
       </md-field>
       <md-button v-on:click="goToSlicePig" class="md-raised md-primary">处理</md-button>
     </div>
@@ -77,7 +77,8 @@
       slidePiece: 0,
       meatIds: [],
       cutResult:[],
-      meatList:[]
+      meatList:[],
+      banSlice: false
     }),
     methods: {
       getAllPig() {
@@ -90,6 +91,10 @@
       getAllMeat() {
         axios.get(apiMeat+'?filter='+encodeURIComponent(JSON.stringify({"where":{"pig":"resource:com.thoughtworks.Pig#"+this.pigId}}))).then((response) => {
           this.meatList = response.data;
+          if(response.data.length > 0) {
+            this.banSlice = true;
+            this.slidePiece = response.data.length
+          }
         }).catch(e => {
           console.log(e)
         })
